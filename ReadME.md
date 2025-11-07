@@ -104,6 +104,9 @@ Questo approccio aggressivo mira a massimizzare gli FPS, con guadagni potenziali
   - Comprendi e scegli tra Fullscreen Esclusivo e Finestra Borderless per ottimizzare ulteriormente le performance e la latenza.
 - **HPET** (⚠️ sconsigliato):
   - `bcdedit /set useplatformclock true/false`, testare per possibili miglioramenti di stabilità.
+- **HDR**: Guida dettagliata alla configurazione ottimale del  Flusso Video HDR. Vengono presentati due profili
+  —**Alta Qualità** (massime prestazioni visive, alto consumo energetico) 
+  -**Bassa Qualità/Risparmio Energetico** (durata batteria migliorata, qualità visiva standard)—e suggerimenti di calibrazione.
 - **Impostazioni di Sistema**:
   - Disabilita app in background.
   - Usa il **Sensore di memoria** in Sicurezza di Windows.
