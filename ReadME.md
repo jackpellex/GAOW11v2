@@ -105,8 +105,8 @@ Questo approccio aggressivo mira a massimizzare gli FPS, con guadagni potenziali
 - **HPET** (⚠️ sconsigliato):
   - `bcdedit /set useplatformclock true/false`, testare per possibili miglioramenti di stabilità.
 - **HDR**: Guida dettagliata alla configurazione ottimale del  Flusso Video HDR. Vengono presentati due profili
-  —**Alta Qualità** (massime prestazioni visive, alto consumo energetico) 
-  -**Bassa Qualità/Risparmio Energetico** (durata batteria migliorata, qualità visiva standard)—e suggerimenti di calibrazione.
+   - **Alta Qualità** (massime prestazioni visive, alto consumo energetico)
+   - **Bassa Qualità/Risparmio Energetico** (durata batteria migliorata, qualità visiva standard) e suggerimenti di calibrazione.
 - **Impostazioni di Sistema**:
   - Disabilita app in background.
   - Usa il **Sensore di memoria** in Sicurezza di Windows.
