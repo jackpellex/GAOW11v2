@@ -134,6 +134,7 @@ Questo approccio aggressivo mira a massimizzare gli FPS, con guadagni potenziali
   - Mantieni attivo **Windows Update**, **Security Center** e **Driver Frameworks**.
 - **Qualità e Volume Audio**:
   - Migliora la fedeltà del suono e il volume generale configurando le opzioni avanzate del dispositivo audio nel **Pannello di controllo**.
+- **Gestione Avanzata dell'Energia**: Personalizza l'uso della CPU, del disco e del sistema I/O tramite i piani di alimentazione per bilanciare **autonomia** o **prestazioni Turbo**.
 
 ### Personalizzazione 🎨
 - **Installazione Personalizzata e Automatizzata (CleanOS)**:
