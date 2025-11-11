@@ -89,6 +89,8 @@ Questo approccio aggressivo mira a massimizzare gli FPS, con guadagni potenziali
   - **Diskpart** (⚠️ **strumento avanzato:** Se usata impropriamente, può causare la **perdita di dati in maniera irreversibile**, rendendone molto difficile il recupero. È tuttavia indispensabile per risolvere problemi complessi a "basso livello" di dischi e partizioni, superando i limiti degli strumenti grafici.): un'utility da riga di comando per il controllo avanzato di dischi e partizioni, essenziale per formattare, creare, eliminare e gestire volumi in modo granulare.
 - **Configurazione di Sistema**:
   - Rilevamento e affinità core avanzata via `bcdedit /set {current} numproc N`.
+- **Fast-Boot**: La funzionalità di Windows che accelera l'avvio ibernando il kernel 
+(Pro: Avvio Veloce, Reattività; Contro: Assenza di Full Shutdown e rischio di corruzione dati in ambienti Dual-Boot come Windows/Linux).
 - **Ottimizzazione Connessione e Rete**:
   - Regola TCP Window Scaling e auto-tuning: `netsh interface tcp set global autotuninglevel=high`.
 - **Gestione Attività**:
