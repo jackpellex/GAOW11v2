@@ -45,9 +45,24 @@ Queste impostazioni (DWORD) si trovano nella sottochiave `PrefetchParameters` e 
 
 `...\Memory Management\PrefetchParameters`
 
-| Valore | Abilitazione | Vantaggi Generali | Svantaggi Generali |
-| :--- | :--- | :--- | :--- |
-| **0** | **Disabilitato** (Sconsigliato) | Zero overhead (carico) sulle risorse. | **Rallentamento** dei tempi di avvio del sistema e di caricamento delle applicazioni. |
-| **1** | **Solo prefetching delle applicazioni** | Velocizza il caricamento dei programmi dopo l'avvio. | Non ottimizza l'avvio del sistema. |
-| **2** | **Solo prefetching dell'avvio (Boot)** | Velocizza il processo di accensione del sistema operativo. | Non ottimizza il caricamento delle applicazioni. |
-| **3** | **Avvio e Applicazioni** (Consigliato) | **Ottimizza entrambi** i processi, migliorando l'esperienza utente generale. | Aumenta il carico di lavoro iniziale per CPU e disco durante l'apprendimento e il precaricamento. |
+| Valore | EnablePrefetcher | EnableSuperfetch (SysMain) |
+| :--- | :--- | :--- |
+| **0** | Disabilitato | Disabilitato |
+| **1** | Solo Applicazioni | Solo Applicazioni |
+| **2** | Solo Avvio | Solo Avvio |
+| **3** | Avvio e App **(Attivo di Default)** | Avvio e App **(Attivo di Default)** |
+
+| Abilitazione | Vantaggi Generali | Svantaggi Generali |
+| :--- | :--- | :--- |
+| **Prefetching/SysMain Attivo (Valore 3)** | **Ottimizza entrambi** i processi (Avvio e App), riducendo le letture/scritture frequenti su disco una volta a regime e lasciando la **CPU più libera** per le applicazioni. | Aumenta il carico di lavoro iniziale per CPU e disco durante l'apprendimento e il precaricamento. |
+| **Prefetching/SysMain Disattivo (Valore 0)** | Zero overhead sulle risorse. **Migliore prevedibilità** del sistema e assenza di attività di I/O non predittiva in background. | Rallentamento dei tempi di avvio del sistema e di caricamento delle applicazioni. |
+
+---
+
+## Discussione: SysMain (Superfetch) On vs. Off
+
+**Utente A (Pro-Attivazione):**
+"Per me, SysMain resta attivo (Valore 3) è fondamentale. Vivo di multitasking e l'idea che il sistema anticipi ciò che userò mi fa risparmiare tempo. Preferisco un avvio più rapido e le mie app che scattano subito. Capisco il piccolo carico iniziale su CPU e disco, ma una volta a regime, la CPU è più libera e **il disco legge meno frequentemente** perché i dati sono già in RAM. Il piccolo costo di longevità del disco vale la reattività che ottengo."
+
+**Utente B (Pro-Disattivazione):**
+"Io lo spengo subito (Valore 0). Le variazioni di velocità che SysMain offre sono minime sull'hardware moderno, specialmente con gli SSD. Non mi piace avere un processo in background che consuma risorse RAM e CPU in momenti imprevedibili, anche solo per un'attività di 'apprendimento'. Preferisco la **prevedibilità assoluta** e la certezza che quando il PC non sta facendo nulla, la **CPU e il Disco siano completamente inattivi**. L'avvio è comunque veloce, e non ho quel fastidioso I/O che mi ruba banda quando sto giocando o lavorando."
