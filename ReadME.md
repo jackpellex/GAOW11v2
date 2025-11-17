@@ -129,6 +129,7 @@ Questo approccio aggressivo mira a massimizzare gli FPS, con guadagni potenziali
   - Imposta `SvcHostSplitThresholdInKB` e `Win32PrioritySeparation` per bilanciare avvio servizi e priorità.
   - Ottimizza la priorità per i giochi: `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games` → imposta `GPU Priority = 8`, `Priority = 6` e `Scheduling Category = High` per migliorare FPS e reattività.
   - Ottimizza `NetworkThrottlingIndex` e `SystemResponsiveness` per ridurre la latenza di rete e migliorare la reattività CPU in gaming, streaming e produzione multimediale.
+  - **Ottimizzazioni Avanzate della Memoria e del Paging**: Contiene modifiche cruciali nella chiave `Memory Management` per controllare l'allocazione della cache di sistema, la pulizia del file di paging per la sicurezza, e la residenza del kernel in RAM per una latenza minima.
 - **Resource Monitor**:
   - Monitora I/O, CPU, RAM e rete in tempo reale per individuare colli di bottiglia.
 - **Servizi Windows**:
