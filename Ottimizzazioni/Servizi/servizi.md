@@ -19,8 +19,6 @@ DialogBlockingService          # Blocco dialoghi interattivi
 
 NetTcpPortSharing              # Condivisione porte net.tcp
 
-RemoteAccess                   # Routing e Accesso Remoto
-
 RemoteRegistry                 # Registro remoto
 
 shpamsvc                       # Microsoft Health Service
@@ -169,6 +167,8 @@ Windows Defender Antivirus     # Protezione antivirus predefinita
 Windows Time                   # Sincronizzazione oraria del sistema
 
 Windows Update                 # Gestione aggiornamenti di sistema
+
+RemoteAccess                   # Routing e Accesso Remoto
 
 ## Ulteriori Consigli
 - Backup Configurazione
