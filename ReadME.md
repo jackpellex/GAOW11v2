@@ -13,17 +13,20 @@ Utilizzando l'**Unattend Generator** e seguendo il percorso indicato in `2_Perso
 
 ---
 
-## 📑 Indice
+### 📑 Indice
 
-1. [Scopo della Guida](#scopo-della-guida)  
-2. [Struttura delle Cartelle](#struttura-delle-cartelle)  
-3. [Prestazioni Realistiche vs. Extreme Tuning](#prestazioni-realistiche-vs-extreme-tuning)  
-4. [Sezioni Principali](#sezioni-principali)  
-   - [Ottimizzazioni](#ottimizzazioni)  
-   - [Personalizzazione](#personalizzazione)  
-   - [Risoluzione Errori](#risoluzione-errori)  
-   - [Sicurezza](#sicurezza)  
-5. [Linee Guida di Stile](#linee-guida-di-stile)  
+1. [Scopo della Guida](https://www.google.com/search?q=%23scopo-della-guida)
+2. [Struttura delle Cartelle](https://www.google.com/search?q=%23struttura-delle-cartelle)
+3. [Prestazioni Realistiche vs. Extreme Tuning](https://www.google.com/search?q=%23prestazioni-realistiche-vs-extreme-tuning)
+4. [Sezioni Principali](https://www.google.com/search?q=%23sezioni-principali)
+* [Ottimizzazioni](https://www.google.com/search?q=%23ottimizzazioni)
+* [Utilità](https://www.google.com/search?q=%23utilit%C3%A0)
+* [Personalizzazione](https://www.google.com/search?q=%23personalizzazione)
+* [Risoluzione Errori](https://www.google.com/search?q=%23risoluzione-errori)
+* [Sicurezza](https://www.google.com/search?q=%23sicurezza)
+
+
+5. [Linee Guida di Stile](https://www.google.com/search?q=%23linee-guida-di-stile)
 
 ---
 
@@ -39,18 +42,19 @@ L'obiettivo finale è quello di ottenere un **Sistema Operativo leggero, veloce 
 
 ---
 
-## Struttura delle Cartelle
+### Struttura delle Cartelle
 
-- **App_e_Siti/**: applicazioni e risorse esterne per test hardware, monitoraggio e ottimizzazione.  
-- **Collegamenti/**: scorciatoie a impostazioni di sistema e tool avanzati.  
-- **Icone/**: set di icone personalizzate per abbellire e distinguere le cartelle.  
-- **1_Ottimizzazioni/**: tecniche di tuning per CPU, GPU, I/O e avvio di sistema.  
-- **2_Personalizzazione/**: temi, layout, automazioni e script per adattare UI/UX.  
-- **3_Risoluzione_Errori/**: diagnostica, log, riparazione file e recupero configurazioni.  
-- **4_Sicurezza/**: hardening, crittografia, protezione memoria e best practice difensive.  
-- **README.md**: punto di partenza e indice di tutta la guida.
+* **App_e_Siti/**: applicazioni e risorse esterne per test hardware, monitoraggio e ottimizzazione.
+* **Collegamenti/**: scorciatoie a impostazioni di sistema e tool avanzati.
+* **Icone/**: set di icone personalizzate per abbellire e distinguere le cartelle.
+* **1_Ottimizzazioni/**: tecniche di tuning per CPU, GPU, I/O e avvio di sistema.
+* **2_Utilità/**: comandi e strumenti pronti all'uso per la gestione quotidiana e avanzata dei dati.
+* **3_Personalizzazione/**: temi, layout, automazioni e script per adattare UI/UX.
+* **4_Risoluzione_Errori/**: diagnostica, log, riparazione file e recupero configurazioni.
+* **5_Sicurezza/**: hardening, crittografia, protezione memoria e best practice difensive.
+* **README.md**: punto di partenza e indice di tutta la guida.
 
-> Le cartelle **1–4** sono il cuore dell’ottimizzazione: esplorale con ordine e attenzione.
+> Le cartelle **1–5** sono il cuore dell’ottimizzazione: esplorale con ordine e attenzione.
 
 ---
 ### Tuning: Realistico vs. Estremo
@@ -85,8 +89,6 @@ Questo approccio aggressivo mira a massimizzare gli FPS, con guadagni potenziali
 - **Terminale PowerShell**:
   - **Compressione della memoria**: `Enable-MMAgent -MemoryCompression`.
   - **Sleep States**: disabilita stati di basso consumo (S1–S3) in sistemi desktop per ridurre lag.
-  - **Robocopy**: un'utility da riga di comando integrata di default su Windows, per copiare file e directory in modo robusto, usata per backup, sincronizzazione e migrazione dati.
-  - **Diskpart** (⚠️ **strumento avanzato:** Se usata impropriamente, può causare la **perdita di dati in maniera irreversibile**, rendendone molto difficile il recupero. È tuttavia indispensabile per risolvere problemi complessi a "basso livello" di dischi e partizioni, superando i limiti degli strumenti grafici.): un'utility da riga di comando per il controllo avanzato di dischi e partizioni, essenziale per formattare, creare, eliminare e gestire volumi in modo granulare.
 - **Configurazione di Sistema**:
   - Rilevamento e affinità core avanzata via `bcdedit /set {current} numproc N`.
 - **Fast-Boot**: La funzionalità di Windows che accelera l'avvio ibernando il kernel 
@@ -138,6 +140,18 @@ Questo approccio aggressivo mira a massimizzare gli FPS, con guadagni potenziali
 - **Qualità e Volume Audio**:
   - Migliora la fedeltà del suono e il volume generale configurando le opzioni avanzate del dispositivo audio nel **Pannello di controllo**.
 - **Gestione Avanzata dell'Energia**: Personalizza l'uso della CPU, del disco e del sistema I/O tramite i piani di alimentazione per bilanciare **autonomia** o **prestazioni Turbo**.
+
+---
+
+### Utilità 🛠️
+
+In questa cartella sono raccolti strumenti e comandi utili per la gestione quotidiana del sistema e dei dati, che vanno oltre la semplice ottimizzazione.
+
+* **Robocopy**: Un'utility da riga di comando integrata di default su Windows, per copiare file e directory in modo robusto. È lo strumento ideale per backup, sincronizzazione e migrazione dati, grazie alla sua capacità di gestire interruzioni e mantenere attributi dei file.
+* **Diskpart** (⚠️ **strumento avanzato**): Un'utility da riga di comando per il controllo avanzato di dischi e partizioni. Essenziale per formattare, creare, eliminare e gestire volumi in modo granulare.
+* *Nota:* Se usata impropriamente, può causare la **perdita di dati in maniera irreversibile**. È tuttavia indispensabile per risolvere problemi complessi a "basso livello", superando i limiti degli strumenti grafici.
+
+---
 
 ### Personalizzazione 🎨
 - **Installazione Personalizzata e Automatizzata (CleanOS)**:
