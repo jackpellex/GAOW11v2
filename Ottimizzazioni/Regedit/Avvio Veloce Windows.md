@@ -1,19 +1,61 @@
-
 # Ottimizzazione Avvio Veloce di Windows con Modifiche ai Registri
 
-## Introduzione
-Le seguenti impostazioni di registro migliorano la velocità e la reattività del sistema operativo Windows. 
-Esse possono essere applicate manualmente o utilizzando uno script `.reg`.
+Questa guida spiega come modificare il Registro di Sistema per eliminare i ritardi dell'interfaccia e velocizzare lo spegnimento del PC.
 
-## Dettaglio delle Impostazioni
-### Cosa fanno queste modifiche:
-- **AutoEndTasks**: Termina automaticamente le attività che non rispondono quando si spegne o si esce dal sistema.
-- **HungAppTimeout**: Riduce il tempo di attesa prima che Windows consideri un’applicazione come "non rispondente".
-- **MenuShowDelay**: Diminuisce il ritardo prima che i menu appaiano quando ci si passa sopra con il mouse.
-- **LowLevelHooksTimeout**: Riduce il tempo di attesa per completare le procedure di hook a basso livello.
+## 1. Cosa stiamo modificando?
 
-### Valori applicati:
-```plaintext
+| Parametro | Effetto dell'ottimizzazione |
+| --- | --- |
+| **AutoEndTasks** | Chiude forzatamente le app aperte allo spegnimento senza chiedere conferma. |
+| **HungAppTimeout** | Riduce il tempo che Windows aspetta prima di considerare un'app "bloccata". |
+| **MenuShowDelay** | Rende l'apertura dei menu a tendina istantanea (default: 400ms → ottimizzato: 8ms). |
+| **LowLevelHooksTimeout** | Velocizza la risposta del sistema agli input (mouse/tastiera) riducendo i tempi di attesa dei processi. |
+
+---
+
+## 2. Procedura Passo-Passo (Manuale)
+
+### Fase A: Navigazione
+
+1. Premi **Windows + R**, digita `regedit` e premi **Invio**.
+2. Copia e incolla questo percorso nella barra degli indirizzi in alto e premi **Invio**:
+`HKEY_CURRENT_USER\Control Panel\Desktop`
+
+### Fase B: Modifica o Creazione dei Valori
+
+Una volta arrivato nella cartella **Desktop**, controlla l'elenco a destra.
+
+**Se il valore esiste già:**
+
+1. Fai doppio clic sul nome (es. `MenuShowDelay`).
+2. Cambia il numero nel campo **Dati valore** con quello indicato nella tabella sotto.
+3. Clicca su **OK**.
+
+**Se il valore NON esiste (Creazione):**
+
+1. Fai clic destro su un punto vuoto nel pannello di destra.
+2. Seleziona **Nuovo** > **Valore stringa** (REG_SZ).
+*(Nota: Per questi specifici parametri servono Valori Stringa, non DWORD).*
+3. Digita esattamente il nome del parametro (es. `AutoEndTasks`) e premi **Invio**.
+4. Fai doppio clic sul nuovo valore creato e inserisci il numero corrispondente.
+
+### Valori da inserire:
+
+* **AutoEndTasks**: `1`
+* **HungAppTimeout**: `1000`
+* **MenuShowDelay**: `8`
+* **LowLevelHooksTimeout**: `1000`
+
+---
+
+## 3. Applicazione tramite Script (.reg)
+
+Se preferisci non farlo a mano, puoi creare un file automatico:
+
+1. Apri il **Blocco Note**.
+2. Incolla il seguente codice:
+
+```reg
 Windows Registry Editor Version 5.00
 
 [HKEY_CURRENT_USER\Control Panel\Desktop]
@@ -21,28 +63,17 @@ Windows Registry Editor Version 5.00
 "HungAppTimeout"="1000"
 "MenuShowDelay"="8"
 "LowLevelHooksTimeout"="1000"
+
 ```
 
-## Come Applicare Manualmente le Modifiche
-1. Aprire **Editor del Registro di sistema**:
-   - Premere `Win + R` e digitare `regedit`, quindi premere **Invio**.
-2. Navigare alla seguente chiave:
-   ```
-   HKEY_CURRENT_USER\Control Panel\Desktop
-   ```
-3. Modificare o creare i seguenti valori:
-   - **AutoEndTasks**: Impostare a `1`.
-   - **HungAppTimeout**: Impostare a `1000`.
-   - **MenuShowDelay**: Impostare a `8`.
-   - **LowLevelHooksTimeout**: Impostare a `1000`.
-4. Salvare le modifiche e riavviare il sistema per applicarle.
+3. Salva il file come **`Ottimizzazione.reg`** (assicurati che l'estensione non sia .txt).
+4. Fai doppio clic sul file creato e conferma l'unione al registro.
 
-## Avvertenze Importanti
-- **Punto di Ripristino**: Prima di modificare il registro, è essenziale creare un punto di ripristino del sistema per garantire il recupero in caso di problemi.
-   - Per farlo:
-     1. Cercare "Punto di Ripristino" nella barra di ricerca di Windows.
-     2. Selezionare "Crea un punto di ripristino" e seguire le istruzioni.
-- **Riavvio Necessario**: Alcune modifiche ai registri non hanno effetto immediato e richiedono un riavvio per essere applicate.
+---
 
-## Conclusione
-Queste impostazioni sono utili per migliorare la reattività del sistema e ridurre i tempi di attesa nelle operazioni quotidiane. Si consiglia di utilizzarle con cautela e di mantenere sempre una copia di backup del registro.
+## ⚠️ Avvertenze e Sicurezza
+
+* **Punto di Ripristino:** Obbligatorio prima di iniziare. Cerca "Crea punto di ripristino" in Start e clicca su **Crea**.
+* **Riavvio:** Le modifiche avranno effetto solo dopo aver **riavviato il sistema**.
+
+---
