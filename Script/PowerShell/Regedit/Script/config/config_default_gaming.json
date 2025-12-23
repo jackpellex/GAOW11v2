@@ -1,0 +1,162 @@
+{
+  "profile_name": "⬅️ WINDOWS DEFAULT - Ripristino Completo",
+  "description": "Ripristina TUTTE le impostazioni ai valori predefiniti di Windows",
+  "category": "rollback",
+  "requires_reboot": true,
+  "registries": [
+    {
+      "path": "HKEY_CURRENT_USER\\System\\GameConfigStore",
+      "name": "GameDVR_Enabled",
+      "value": 1,
+      "type": "DWord",
+      "description": "GameDVR abilitato (default)"
+    },
+    {
+      "path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\PolicyManager\\default\\ApplicationManagement\\AllowGameDVR",
+      "name": "value",
+      "value": 1,
+      "type": "DWord",
+      "description": "GameDVR sistema abilitato (default)"
+    },
+    {
+      "path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile\\Tasks\\Games",
+      "name": "GPU Priority",
+      "value": 2,
+      "type": "DWord",
+      "description": "Priorità GPU normale (default)"
+    },
+    {
+      "path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile\\Tasks\\Games",
+      "name": "Priority",
+      "value": 2,
+      "type": "DWord",
+      "description": "Priorità CPU normale (default)"
+    },
+    {
+      "path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile\\Tasks\\Games",
+      "name": "Scheduling Category",
+      "value": "Medium",
+      "type": "String",
+      "description": "Scheduling medio (default)"
+    },
+    {
+      "path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile\\Tasks\\Games",
+      "name": "SFIO Priority",
+      "value": "Normal",
+      "type": "String",
+      "description": "Priorità I/O normale (default)"
+    },
+    {
+      "path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\PriorityControl",
+      "name": "Win32PrioritySeparation",
+      "value": 2,
+      "type": "DWord",
+      "description": "Bilanciamento CPU standard (default)"
+    },
+    {
+      "path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile",
+      "name": "NetworkThrottlingIndex",
+      "value": 10,
+      "type": "DWord",
+      "description": "Throttling rete bilanciato (default)"
+    },
+    {
+      "path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile",
+      "name": "SystemResponsiveness",
+      "value": 20,
+      "type": "DWord",
+      "description": "20% CPU per background (default)"
+    },
+    {
+      "path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control",
+      "name": "SvcHostSplitThresholdInKB",
+      "value": 380000,
+      "type": "DWord",
+      "description": "Memoria servizi default (default)"
+    },
+    {
+      "path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Memory Management",
+      "name": "LargeSystemCache",
+      "value": 0,
+      "type": "DWord",
+      "description": "Cache sistema limitata (default)"
+    },
+    {
+      "path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Memory Management",
+      "name": "ClearPageFileAtShutdown",
+      "value": 0,
+      "type": "DWord",
+      "description": "Pagefile non pulito (default)"
+    },
+    {
+      "path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Memory Management",
+      "name": "DisablePagingExecutive",
+      "value": 0,
+      "type": "DWord",
+      "description": "Kernel può essere paginato (default)"
+    },
+    {
+      "path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Memory Management\\PrefetchParameters",
+      "name": "EnablePrefetcher",
+      "value": 3,
+      "type": "DWord",
+      "description": "Prefetcher attivo (default)"
+    },
+    {
+      "path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Memory Management\\PrefetchParameters",
+      "name": "EnableSuperfetch",
+      "value": 3,
+      "type": "DWord",
+      "description": "Superfetch attivo (default)"
+    },
+    {
+      "path": "HKEY_CURRENT_USER\\Control Panel\\Desktop",
+      "name": "AutoEndTasks",
+      "value": "0",
+      "type": "String",
+      "description": "Conferma chiusura app (default)"
+    },
+    {
+      "path": "HKEY_CURRENT_USER\\Control Panel\\Desktop",
+      "name": "HungAppTimeout",
+      "value": "5000",
+      "type": "String",
+      "description": "Timeout app 5 secondi (default)"
+    },
+    {
+      "path": "HKEY_CURRENT_USER\\Control Panel\\Desktop",
+      "name": "MenuShowDelay",
+      "value": "400",
+      "type": "String",
+      "description": "Ritardo menu 400ms (default)"
+    },
+    {
+      "path": "HKEY_CURRENT_USER\\Control Panel\\Desktop",
+      "name": "LowLevelHooksTimeout",
+      "value": "5000",
+      "type": "String",
+      "description": "Timeout hook 5 secondi (default)"
+    },
+    {
+      "path": "HKEY_CURRENT_USER\\Software\\Policies\\Microsoft\\Windows\\Explorer",
+      "name": "DisableSearchBoxSuggestions",
+      "value": 0,
+      "type": "DWord",
+      "description": "Ricerca Bing abilitata (default)"
+    },
+    {
+      "path": "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
+      "name": "RotatingLockScreenEnabled",
+      "value": 1,
+      "type": "DWord",
+      "description": "Spotlight abilitato (default)"
+    },
+    {
+      "path": "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
+      "name": "RotatingLockScreenOverlayEnabled",
+      "value": 1,
+      "type": "DWord",
+      "description": "Overlay lockscreen abilitato (default)"
+    }
+  ]
+}

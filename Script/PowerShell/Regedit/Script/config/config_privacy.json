@@ -1,0 +1,29 @@
+{
+  "profile_name": "Privacy & Clean UI",
+  "description": "Disabilita telemetria, spotlight, suggerimenti e ricerca online",
+  "category": "privacy",
+  "requires_reboot": false,
+  "registries": [
+    {
+      "path": "HKEY_CURRENT_USER\\Software\\Policies\\Microsoft\\Windows\\Explorer",
+      "name": "DisableSearchBoxSuggestions",
+      "value": 1,
+      "type": "DWord",
+      "description": "Disabilita ricerca online Bing nel menu Start"
+    },
+    {
+      "path": "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
+      "name": "RotatingLockScreenEnabled",
+      "value": 0,
+      "type": "DWord",
+      "description": "Disabilita rotazione sfondi Spotlight"
+    },
+    {
+      "path": "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
+      "name": "RotatingLockScreenOverlayEnabled",
+      "value": 0,
+      "type": "DWord",
+      "description": "Rimuove overlay e pubblicità dalla lock screen"
+    }
+  ]
+}

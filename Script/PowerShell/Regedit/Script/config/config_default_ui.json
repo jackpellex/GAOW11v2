@@ -1,0 +1,36 @@
+{
+  "profile_name": "⬅️ RIPRISTINA - UI Default",
+  "description": "Ripristina valori predefiniti interfaccia Windows",
+  "category": "rollback",
+  "requires_reboot": false,
+  "registries": [
+    {
+      "path": "HKEY_CURRENT_USER\\Control Panel\\Desktop",
+      "name": "AutoEndTasks",
+      "value": "0",
+      "type": "String",
+      "description": "Ripristina conferma chiusura app"
+    },
+    {
+      "path": "HKEY_CURRENT_USER\\Control Panel\\Desktop",
+      "name": "HungAppTimeout",
+      "value": "5000",
+      "type": "String",
+      "description": "Timeout app bloccate predefinito (5 secondi)"
+    },
+    {
+      "path": "HKEY_CURRENT_USER\\Control Panel\\Desktop",
+      "name": "MenuShowDelay",
+      "value": "400",
+      "type": "String",
+      "description": "Ritardo menu predefinito (400ms)"
+    },
+    {
+      "path": "HKEY_CURRENT_USER\\Control Panel\\Desktop",
+      "name": "LowLevelHooksTimeout",
+      "value": "5000",
+      "type": "String",
+      "description": "Timeout input predefinito"
+    }
+  ]
+}

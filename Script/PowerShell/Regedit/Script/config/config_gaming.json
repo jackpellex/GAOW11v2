@@ -1,0 +1,162 @@
+{
+  "profile_name": "🎮 GAMING ULTIMATE - Prestazioni Massime",
+  "description": "TUTTE le ottimizzazioni possibili per gaming competitivo: FPS massimi, latenza minima, zero distrazioni",
+  "category": "gaming",
+  "requires_reboot": true,
+  "registries": [
+    {
+      "path": "HKEY_CURRENT_USER\\System\\GameConfigStore",
+      "name": "GameDVR_Enabled",
+      "value": 0,
+      "type": "DWord",
+      "description": "Disabilita GameDVR - riduce CPU/GPU overhead"
+    },
+    {
+      "path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\PolicyManager\\default\\ApplicationManagement\\AllowGameDVR",
+      "name": "value",
+      "value": 0,
+      "type": "DWord",
+      "description": "Disabilita GameDVR a livello sistema"
+    },
+    {
+      "path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile\\Tasks\\Games",
+      "name": "GPU Priority",
+      "value": 8,
+      "type": "DWord",
+      "description": "Priorità GPU MASSIMA per giochi"
+    },
+    {
+      "path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile\\Tasks\\Games",
+      "name": "Priority",
+      "value": 6,
+      "type": "DWord",
+      "description": "Alta priorità CPU per processi gaming"
+    },
+    {
+      "path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile\\Tasks\\Games",
+      "name": "Scheduling Category",
+      "value": "High",
+      "type": "String",
+      "description": "Scheduling ad alta priorità"
+    },
+    {
+      "path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile\\Tasks\\Games",
+      "name": "SFIO Priority",
+      "value": "High",
+      "type": "String",
+      "description": "I/O ad alta priorità - riduce latenza disco"
+    },
+    {
+      "path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\PriorityControl",
+      "name": "Win32PrioritySeparation",
+      "value": 38,
+      "type": "DWord",
+      "description": "Ottimizza per FPS massimi (valore 0x26 = 38 decimale)"
+    },
+    {
+      "path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile",
+      "name": "NetworkThrottlingIndex",
+      "value": 4294967295,
+      "type": "DWord",
+      "description": "Disabilita throttling rete (0xFFFFFFFF) - latenza minima"
+    },
+    {
+      "path": "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile",
+      "name": "SystemResponsiveness",
+      "value": 0,
+      "type": "DWord",
+      "description": "0% CPU per background - tutto al gaming"
+    },
+    {
+      "path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control",
+      "name": "SvcHostSplitThresholdInKB",
+      "value": 1000000,
+      "type": "DWord",
+      "description": "Ottimizza memoria servizi (per 16GB RAM)"
+    },
+    {
+      "path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Memory Management",
+      "name": "LargeSystemCache",
+      "value": 0,
+      "type": "DWord",
+      "description": "Massimizza RAM per gaming invece di cache"
+    },
+    {
+      "path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Memory Management",
+      "name": "ClearPageFileAtShutdown",
+      "value": 0,
+      "type": "DWord",
+      "description": "Spegnimento veloce (non pulisce pagefile)"
+    },
+    {
+      "path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Memory Management",
+      "name": "DisablePagingExecutive",
+      "value": 1,
+      "type": "DWord",
+      "description": "Kernel SEMPRE in RAM - latenza zero"
+    },
+    {
+      "path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Memory Management\\PrefetchParameters",
+      "name": "EnablePrefetcher",
+      "value": 0,
+      "type": "DWord",
+      "description": "Disabilita prefetcher - risorse per gaming"
+    },
+    {
+      "path": "HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Memory Management\\PrefetchParameters",
+      "name": "EnableSuperfetch",
+      "value": 0,
+      "type": "DWord",
+      "description": "Disabilita superfetch - CPU più libera per giochi"
+    },
+    {
+      "path": "HKEY_CURRENT_USER\\Control Panel\\Desktop",
+      "name": "AutoEndTasks",
+      "value": "1",
+      "type": "String",
+      "description": "Chiusura app automatica - no interruzioni"
+    },
+    {
+      "path": "HKEY_CURRENT_USER\\Control Panel\\Desktop",
+      "name": "HungAppTimeout",
+      "value": "1000",
+      "type": "String",
+      "description": "Timeout app ridotto a 1 secondo"
+    },
+    {
+      "path": "HKEY_CURRENT_USER\\Control Panel\\Desktop",
+      "name": "MenuShowDelay",
+      "value": "8",
+      "type": "String",
+      "description": "Menu istantanei (8ms) - reattività massima"
+    },
+    {
+      "path": "HKEY_CURRENT_USER\\Control Panel\\Desktop",
+      "name": "LowLevelHooksTimeout",
+      "value": "1000",
+      "type": "String",
+      "description": "Input ultra-reattivo (1 secondo)"
+    },
+    {
+      "path": "HKEY_CURRENT_USER\\Software\\Policies\\Microsoft\\Windows\\Explorer",
+      "name": "DisableSearchBoxSuggestions",
+      "value": 1,
+      "type": "DWord",
+      "description": "Disabilita Bing - privacy e velocità"
+    },
+    {
+      "path": "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
+      "name": "RotatingLockScreenEnabled",
+      "value": 0,
+      "type": "DWord",
+      "description": "Disabilita Spotlight - riduce carico sistema"
+    },
+    {
+      "path": "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
+      "name": "RotatingLockScreenOverlayEnabled",
+      "value": 0,
+      "type": "DWord",
+      "description": "Rimuove overlay - UI pulita"
+    }
+  ]
+}
