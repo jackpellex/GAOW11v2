@@ -129,15 +129,20 @@ Questo approccio aggressivo mira a massimizzare gli FPS, con guadagni potenziali
   - Rimuovi app preinstallate non necessarie dal Pannello di controllo.
 * **Performance Monitor**:
   - Crea baseline di prestazioni e traccia counter critici.
+
 * **Editor del Registro (Regedit)** (⚠️):
-  - Abilita **Fast Startup**: `HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Power` → `HiberbootEnabled = 1`.
-  - Disabilita GameDVR: `HKEY_CURRENT_USER\System\GameConfigStore` → `GameDVR_Enabled = 0`.
-  - Imposta `SvcHostSplitThresholdInKB` e `Win32PrioritySeparation` per bilanciare avvio servizi e priorità.
-  - Ottimizza la priorità per i giochi: `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games` → imposta `GPU Priority = 8`, `Priority = 6` e `Scheduling Category = High` per migliorare FPS e reattività.
-  - Ottimizza `NetworkThrottlingIndex` e `SystemResponsiveness` per ridurre la latenza di rete e migliorare la reattività CPU in gaming, streaming e produzione multimediale.
-  - **Ottimizzazioni Avanzate della Memoria e del Paging**: Contiene modifiche cruciali nella chiave `Memory Management` per controllare l'allocazione della cache di sistema, la pulizia del file di paging per la sicurezza, e la residenza del kernel in RAM per una latenza minima.
-  - **Disabilita Windows Spotlight e Pubblicità**: `HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager` → crea i valori DWORD (32-bit) `RotatingLockScreenEnabled = 0` e `RotatingLockScreenOverlayEnabled = 0` per rimuovere sfondi dinamici, suggerimenti e pubblicità dalla schermata di blocco.
-  - **Stop Ricerca Online nel Menu Start**: `HKEY_CURRENT_USER\Software\Policies\Microsoft\Windows\Explorer` → se la chiave `Explorer` non esiste, crearla sotto `Windows` e impostare `DisableSearchBoxSuggestions = 1` per bloccare i risultati di Bing e migliorare privacy e velocità.
+* **Reattività Interfaccia e Shutdown Rapido**: In `HKEY_CURRENT_USER\Control Panel\Desktop`, imposta `MenuShowDelay` a **8** (riduce il ritardo menu), `AutoEndTasks` a **1** (chiusura forzata app) e riduci `WaitToKillAppTimeout` a **2000** per velocizzare drasticamente lo spegnimento.
+* **Disabilita GameDVR Completo**: Disattivazione sia a livello utente (`HKEY_CURRENT_USER\System\GameConfigStore` → `GameDVR_Enabled = 0`) che policy di sistema (`HKEY_LOCAL_MACHINE\...\AllowGameDVR` → `value = 0`) per eliminare l'overhead di registrazione in background.
+* **Ottimizzazione Processi SvcHost**: `SvcHostSplitThresholdInKB` definisce la soglia RAM per separare i servizi. Calcola il valore in base alla RAM installata (es. per 16GB o 32GB) per migliorare l'isolamento. **Nota**: Evitare configurazioni RAM non binarie (es. 12GB, 24GB) per non penalizzare il dual-channel.
+* **Win32PrioritySeparation**: Bilancia la priorità CPU foreground/background. Usa il valore **26** (Hex `1a`) per massima reattività gaming (Short Quantum), oppure **38** (Hex `26`) per multitasking/streaming. Evita valori non documentati come 27 o 28.
+* **Priorità GPU e CPU per Giochi**: In `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games`, imposta `GPU Priority = 8`, `Priority = 6`, `Scheduling Category = High` e aggiungi `SFIO Priority = High` per massimizzare I/O e rendering.
+* **Rete e Responsività**: Imposta `NetworkThrottlingIndex` a `ffffffff` (Hex) per rimuovere limiti ai pacchetti di rete e `SystemResponsiveness` a `10` (Dec) per riservare il giusto quantitativo di CPU ai servizi background senza penalizzare il gaming.
+* **Gestione Avanzata Memoria**:
+* `DisablePagingExecutive = 1`: Forza kernel e driver in RAM (richiede >8GB RAM).
+* **Prefetcher/SysMain**: Configurazione A (Disabilitato, valori `0`) consigliata per SSD moderni per ridurre scritture; Configurazione B (Abilitato, valori `3`) per HDD o workflow ripetitivi.
+* **Disabilita Windows Spotlight e Pubblicità**: In `HKEY_CURRENT_USER\...\ContentDeliveryManager`, imposta `RotatingLockScreenEnabled = 0` e `RotatingLockScreenOverlayEnabled = 0` per rimuovere traffico dati inutile, sfondi dinamici e suggerimenti dalla Lock Screen.
+* **Stop Ricerca Online nel Menu Start**: In `HKEY_CURRENT_USER\Software\Policies\Microsoft\Windows\Explorer`, crea/imposta `DisableSearchBoxSuggestions = 1` per limitare la ricerca all'indice locale, eliminando la latenza di Bing e migliorando la privacy.
+
 * **Resource Monitor**:
   - Monitora I/O, CPU, RAM e rete in tempo reale per individuare colli di bottiglia.
 * **Servizi Windows**:
