@@ -1,62 +1,73 @@
 # HPET e TSC Problem Resolution
 
-Questa guida spiega come risolvere i problemi di latenza e cali di performance (FPS bassi) su processori moderni causati dall'uso del timer di sistema errato. Nei sistemi recenti, l'uso del vecchio **HPET** (High Performance Event Timer) può creare colli di bottiglia, mentre il **TSC** (Time Stamp Counter) integrato nelle CPU moderne offre maggiore precisione e latenza quasi nulla.
+Questa guida fornisce i passaggi tecnici per ottimizzare il sistema di timing su Windows, risolvendo problemi di latenza, micro-stuttering e letture errate della frequenza CPU su processori moderni (AMD Ryzen, Intel Core 12th+ Gen).
 
 *Ispirato dal video di Matt's Computer Services:* [One Trillion GHz! HPET Fix](https://www.youtube.com/shorts/jL8lfpjObuw)
 
 ---
 
-## 1. Risoluzione tramite Prompt dei Comandi (CMD)
+## 1. Risoluzione tramite CMD (Amministratore)
 
-Eseguire tutti i comandi in un **Prompt dei Comandi (CMD) come Amministratore**.
+Eseguire i seguenti comandi nel **Prompt dei Comandi** con privilegi di amministratore.
 
-### A. Disabilitare l'uso forzato di HPET
-Questo comando rimuove la forzatura del clock di piattaforma, permettendo a Windows di utilizzare il TSC della CPU.
+### A. Disabilitare il forzamento di HPET
+Rimuove la priorità al timer di sistema (HPET) a favore del timer interno alla CPU (TSC).
 * **Comando:** `bcdedit /deletevalue useplatformclock`
-* **Perché:** HPET comunica tramite il chipset, introducendo latenza. TSC è interno alla CPU e molto più veloce. Rimuovendo questo valore, Windows smette di dare priorità al timer lento.
-* **Ripristino (Rollback):** `bcdedit /set useplatformclock true`
+* **Perché:** HPET è un timer esterno alla CPU situato sulla scheda madre. Interrogarlo introduce latenza. Il TSC è integrato nel chip ed è quasi istantaneo.
+* **Ripristino:** `bcdedit /set useplatformclock true`
 
-### B. Disabilitare il Dynamic Tick (Ottimizzazione extra)
-Il Dynamic Tick permette a Windows di fermare il timer della CPU quando non ci sono processi attivi per risparmiare energia, ma può causare micro-stuttering nei giochi.
+### B. Disabilitare il Dynamic Tick
+Impedisce a Windows di sospendere il timer durante i periodi di inattività per risparmio energetico.
 * **Comando:** `bcdedit /set disabledynamictick yes`
-* **Perché:** Mantiene il timer della CPU costante, eliminando le fluttuazioni di latenza causate dal risparmio energetico del kernel.
-* **Ripristino (Rollback):** `bcdedit /deletevalue disabledynamictick`
+* **Perché:** Il "salto" tra stati di attivazione del timer può causare instabilità nel frame rate e input lag.
+* **Ripristino:** `bcdedit /deletevalue disabledynamictick`
 
-### C. Forzare l'uso del Synthetic Timers (Opzionale per maggiore stabilità)
-Assicura che il sistema utilizzi un tick rate costante.
+### C. Gestione del Synthetic Timer
+Assicura che il sistema operativo non utilizzi emulazioni software per il tempo.
 * **Comando:** `bcdedit /set useplatformtick yes`
-* **Perché:** Garantisce che il sistema operativo utilizzi un'unica fonte di clock coerente, evitando conflitti tra i vari timer hardware.
-* **Ripristino (Rollback):** `bcdedit /deletevalue useplatformtick`
+* **Perché:** Stabilizza la comunicazione tra hardware e software utilizzando un unico riferimento coerente.
+* **Ripristino:** `bcdedit /deletevalue useplatformtick`
 
 ---
 
 ## 2. Configurazione BIOS/UEFI
 
-Per una risoluzione definitiva, è consigliabile disattivare HPET a livello hardware, se la scheda madre lo consente.
+Per massimizzare i benefici, disabilita il timer a livello hardware.
 
-1.  Riavvia il PC ed entra nel **BIOS/UEFI** (solitamente premendo `CANC`, `F2` o `F12`).
-2.  Cerca la sezione **Advanced**, **PCH Configuration** o **Settings**.
-3.  Individua la voce **HPET Support** o **High Performance Event Timer**.
-4.  Imposta il valore su **Disabled**.
-5.  Salva ed esci (`F10`).
+1.  Riavvia il PC ed entra nel **BIOS/UEFI** (tasto `CANC` o `F2`).
+2.  Cerca impostazioni come: **Advanced** -> **PCH Configuration** o **System Agent**.
+3.  Imposta **HPET Support** o **High Performance Event Timer** su **Disabled**.
+4.  **Salva ed Esci (F10).**
 
-*Nota: Alcune schede madri moderne non mostrano più questa opzione perché la gestione è delegata interamente al sistema operativo o integrata nel chipset in modo non disattivabile.*
+> [!NOTE]
+> Su alcuni laptop o schede madri di ultimissima generazione, questa voce potrebbe essere nascosta poiché il BIOS gestisce tutto automaticamente. In tal caso, affidati solo ai comandi CMD.
 
 ---
 
 ## 3. Verifica Post-Intervento
 
-Dopo aver eseguito i comandi e riavviato il PC, verifica che la procedura sia andata a buon fine:
+Dopo il riavvio, controlla se l'intervento ha avuto successo:
 
-1.  **Task Manager:** Apri *Gestione Attività* (Ctrl+Shift+Esc) > Scheda *Prestazioni* > *CPU*.
-    * **Risultato corretto:** La velocità della CPU deve mostrare valori reali (es. 3.60 GHz, 4.80 GHz).
-    * **Problema:** Se vedi valori assurdi (es. 100+ GHz o 1.000.000 GHz), Windows sta ancora calcolando male il tempo a causa di HPET.
-2.  **Performance in gioco:** Dovresti notare un aumento dei frame rate minimi (1% low) e una maggiore fluidità generale, specialmente in titoli CPU-bound come Valorant o CS2.
+1.  **Task Manager:** Vai in *Prestazioni* > *CPU*. Se prima vedevi velocità assurde (es. >100 GHz), ora dovresti vedere la frequenza reale della tua CPU.
+2.  **Latenza:** Utilizza tool come **LatencyMon** per verificare che i DPC latency siano diminuiti.
+3.  **FPS:** In titoli CPU-bound (Valorant, CS2), i cali improvvisi di frame dovrebbero essere spariti.
 
 ---
 
-## Sintesi Comandi di Ripristino
-In caso di instabilità del sistema, usa questi comandi per tornare alle impostazioni originali:
+## 4. FAQ & Approfondimento Tecnico
+
+### Ho "Time Stamp Counter" presente ma "TSC Adjustment" assente. È un problema?
+**No.** È perfettamente normale su processori moderni come gli **AMD Ryzen AI 9 (Zen 5)**.
+* **Time Stamp Counter (Presente):** Indica che la tua CPU ha il "cronometro" interno ad alta precisione. È l'unica cosa che conta davvero.
+* **TSC Adjustment (Assente):** È una funzione di registro (TSC_ADJUST) usata dal sistema operativo per sincronizzare core che "vanno fuori tempo". Nelle architetture moderne, la sincronizzazione hardware è così avanzata che questa funzione non è necessaria o non viene esposta.
+
+### Perché HPET è un problema sui nuovi PC?
+HPET è stato creato quando le CPU non erano abbastanza veloci da gestire il tempo internamente. Oggi, interrogare un componente esterno (HPET) mentre si ha un TSC ultra-rapido è come guidare una Ferrari ma fermarsi ogni 10 metri a chiedere l'ora a un passante invece di guardare il cruscotto.
+
+---
+
+## Sintesi Comandi di Ripristino (Rollback)
+Se riscontri instabilità o bug audio, torna alle impostazioni di fabbrica:
 ```cmd
 bcdedit /set useplatformclock true
 bcdedit /deletevalue disabledynamictick
